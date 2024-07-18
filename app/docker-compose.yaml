@@ -1,0 +1,69 @@
+version: "3.9"
+
+networks:
+  application-network:
+    driver: bridge
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: kayky0728/vite-react-tailwind:latest
+    container_name: frontend
+    tty: true
+    volumes:
+      - ./frontend/app:/usr/src/app
+    ports:
+      - 5173:5173
+    networks:
+      - application-network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: kayky0728/java-springboot:latest
+    container_name: backend
+    tty: true
+    # entrypoint: dockerize -wait tcp://db:5432 -timeout 60s docker-entrypoint.sh
+    volumes:
+      - ./backend/app:/usr/src/app
+    ports:
+      - 4000:4000
+    networks:
+      - application-network
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD="senha123"
+    volumes:
+      - ./database/postgres/volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    container_name: postgres-db
+    restart: always
+    tty: true
+    networks:
+      - application-network
+
+  pg-admin:
+    image: dpage/pgadmin4:latest
+    container_name: pg-admin
+    restart: always
+    depends_on:
+      - postgres-db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: user123
+    ports:
+      - 9000:80
+    volumes:
+      - ./database/pg-admin:/var/lib/pgadmin
+    networks:
+      - application-network
