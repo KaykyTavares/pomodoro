@@ -28,7 +28,6 @@ services:
     image: kayky0728/java-springboot:latest
     container_name: backend
     tty: true
-    # entrypoint: dockerize -wait tcp://db:5432 -timeout 60s docker-entrypoint.sh
     volumes:
       - ./backend/app:/usr/src/app
     ports:
@@ -36,34 +35,19 @@ services:
     networks:
       - application-network
     depends_on:
-      - postgres-db
+      - database
 
-  postgres-db:
-    image: postgres:latest
-    environment:
-      - POSTGRES_PASSWORD="senha123"
-    volumes:
-      - ./database/postgres/volume:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
-    container_name: postgres-db
+  database:
+    image: mysql/mysql-server:latest
+    container_name: database
     restart: always
-    tty: true
+    environment:
+      - MYSQL_DATABASE=applicationdb
+      - MYSQL_ROOT_PASSWORD=senha123
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./database/mysql/volume:/var/lib/mysql
     networks:
       - application-network
 
-  pg-admin:
-    image: dpage/pgadmin4:latest
-    container_name: pg-admin
-    restart: always
-    depends_on:
-      - postgres-db
-    environment:
-      PGADMIN_DEFAULT_EMAIL: user@localhost.com
-      PGADMIN_DEFAULT_PASSWORD: user123
-    ports:
-      - 9000:80
-    volumes:
-      - ./database/pg-admin:/var/lib/pgadmin
-    networks:
-      - application-network
