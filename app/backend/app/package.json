@@ -1,11 +1,13 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "type": "module",
+  "main": "src/index.ts",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --exec node --loader ts-node/esm src/index.ts",
+    "test": "jest",
+    "initialize": "ts-node src/index.ts",
+    "dev": "nodemon",
     "start": "npm run build && node dist/index.js"
   },
   "keywords": [],
@@ -14,10 +16,13 @@
   "description": "",
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "@types/node": "^20.14.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.12",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4",
+    "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "express": "^4.19.2"
