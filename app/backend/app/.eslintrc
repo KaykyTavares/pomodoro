@@ -1,0 +1,15 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "airbnb-base"
+    ],
+    "rules": {
+        "import/extensions": "off",
+        "quotes": ["error", "double"],
+        "@typescript-eslint/quotes": ["error", "double"]
+    }
+}
