@@ -1,8 +1,8 @@
-# Summary
+# Summary :book:
 - [1. Introdução](#1-introduction)
 - [2. Run project locally](#2-run-project-locally-whale)
 
-# 1. Introduction
+# 1. Introduction :pencil:
 This is a project to create a :tomato: **`pomodoro`** :tomato: web app. I'm devoloping the **`first version`** but the **`main ideia`** is **`improving`** the project in parallel **`with my skills`** or lear with others that want collaborate. So, It will be a long project :laughing:.  
 
 # 2. Run project locally :whale:
