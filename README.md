@@ -17,7 +17,11 @@ So, you **`must have`** the Docker properly installed in your machine :computer:
     ``` bash
     cd app
     ```
-3. Now, just execute the following command:
+3. Create a volume folder
+    ```bash
+    mkdir database/mysql/volume
+    ```
+4. Now, just execute the following command:
     ``` bash
     sudo docker compose up -d --build
     ```
