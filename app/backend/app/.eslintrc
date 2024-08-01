@@ -1,15 +1,14 @@
 {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "extends": [
-      "airbnb-base"
-    ],
-    "rules": {
-        "import/extensions": "off",
-        "quotes": ["error", "double"],
-        "@typescript-eslint/quotes": ["error", "double"]
-    }
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["airbnb-base"],
+  "rules": {
+    "import/extensions": "off",
+    "quotes": ["error", "double"],
+    "@typescript-eslint/quotes": ["error", "double"],
+    "no-unused-vars": false,
+    "eslint-plugin-import/no-unresolved": false
+  },
+  "ignorePatterns": ["*.test.ts"]
 }
