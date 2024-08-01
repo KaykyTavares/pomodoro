@@ -1,16 +1,16 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/server.ts",
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "initialize": "ts-node src/index.ts",
+    "initialize": "ts-node src/server.ts",
     "dev": "npm run lint:fix && nodemon",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/server.js"
   },
   "keywords": [],
   "author": "",
